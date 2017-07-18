@@ -15,8 +15,8 @@ public class A2 {
 		while (i!=len) {
 			Node temp = new Node(0);
 			p.i = sc.nextInt();
-			input[i] = p.i;						//bcz we have to send int array to removeDupicate method.
-			p.next = temp;
+			input[i] = p.i;						//initializing elements of array to send
+			p.next = temp;						// int array to removeDupicate method.
 			p = p.next;
 			i++;
 		}
