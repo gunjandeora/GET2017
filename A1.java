@@ -30,7 +30,9 @@ class Calculator {
 	/* Evaluating any value, calling operation class 
 	 * and displaying final values in queues.
 	 */
-	Operation operation1 = new Operation(button[0]);
+	static Queue<String> resultQueue = new LinkedList<String>();
+	// add values to this queue and perform operations using operation class.
+	Operation operation1 = new Operation(resultQueue);
 	/*//operation1.getResult();				//retrieving result for operation by retrieving values 
 	 * 											queue using getButtonType and calculating result.
 	 *  operation1.printExpression			method will be printing all values present in queue
@@ -61,19 +63,19 @@ class Button{
 class Operation implements Display {
 	float operandOne;
 	float operandTwo;
-	static Queue<String> resultQueue = new LinkedList<String>();
+	String operator;
 	//initializing values of operand1 and operand2
-	void Operation(float op1, float op2, String operator){
-		operandOne = op1;
-		operandTwo = op2;
-	}
-	Operation(Button b){
+	
+	Operation(Queue<String> resultQueue){
 		// get buttonType
 		// add the appropriate buttonType into queue
 		// check if the type is of operand type or operator type.
 			//check if operator is before operand just push the operator
 			// if operand is before operator perform the result and add it to the queue
+		
+		// calling getResult from this constructor only using appropriate parameters.
 	}
+	
 	String getResult(float operandOne, float operandTwo , String operator){
 		String value ="";
 		//check what is in queue . if its a operand before then retrieves operand and operator 
@@ -104,5 +106,4 @@ class Layout{
 	 * like button[5].int buttonPositionX;
 	 */
 }
-
 
