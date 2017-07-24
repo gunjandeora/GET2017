@@ -58,7 +58,7 @@ class Report{
         writer = new PrintWriter("the-file-name.txt", "UTF-8");
             }
         catch(Exception e){
-    
+		system.out.print("FILE NOT FOUND, PLEASE CHECK YOUR FILE");
             }
 	// constructor to initialize number of students and calling report1 and report2 methods.
 	public Report(int n) {
@@ -66,7 +66,6 @@ class Report{
 		report1();
 		report2();
 	}
-	
 	Student student[] = new Student[numberOfStudents];
 	Questions ques = new Questions();
 	public void report1(){
@@ -89,14 +88,12 @@ class Report{
 					//default not needed as response won't be out of options;
 				}			
 			}	
-		
 				String questionPart = ques.questions[quesnum].split(".")[1];		// removing string "Q1"
 				String[] overallQuestion = questionPart.split(",");			//splitting questions by "," and saving in string array
 				String type = overallQuestion[1].trim();					//checking if its single type or multiple
 				String availableOptions = "";
 				if(overallQuestion.length>2){								//conditions for single or multiple select question
 					availableOptions = overallQuestion[2].trim(); 		//get options for each question.
-				
 				}
 				//printing only single select question with options and percentage
 				if (type=="Single Select" ){
@@ -105,13 +102,10 @@ class Report{
 					System.out.print(availableOptions);
 					for(int num=1;num<=5;num++){				//5 is fixed as number of options for each question will be fixed
 						System.out.println(num + "-" + (aCount/numberOfStudents*100));
-					}
-					
+					}	
 				}
-		}					//ending loop with variable quesNum, that is from here it will shift to next question.
-			
+		}					//ending loop with variable quesNum, that is from here it will shift to next question.	
 	}				//report1 ended
-	
 	public void report2(){
 		String finalInputString;	
                 //putting response of each student in an string and then writing whole stirng in file 
@@ -122,8 +116,7 @@ class Report{
                                     response = response + student[i].response[r] + ",";   //retrieving each response
                                 }           //end of loop for each student's response.
 				finalInputString = "Participant" + i + ","+ response;
-                                writer.println(finalInputString);           //inserting each string for each student in file.
-                                
+                                writer.println(finalInputString);           //inserting each string for each student in file. 
 			}	//end of for loop or students.			
 	}
 }
@@ -131,8 +124,7 @@ class Report{
 class Questions{
 	int numberOfQuestions;
 	String[] questions;
-	public Questions(){
-		
+	public Questions(){	
 	}
 	// retrieving questions from the file and saving in array.
 	public Questions(File file){
@@ -153,7 +145,7 @@ class Questions{
 			questions[numberOfQuestions] = temp;	//putting value of temp string in question array.	
 		}
 	}
-	
+	public void sortQuestions(){
+		Arrays.sort(questions);
+	}	
 }
-
-
