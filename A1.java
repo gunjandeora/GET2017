@@ -23,7 +23,6 @@ class Calculator {
 	 * specifying their functions for operators or operands
 	 * using setButtonType method. 
 	 */
-	
 	//SOP(enter number of buttons);
 	Button button[] = new Button[20];				//number of buttons can be taken from the user and intialized later.
 	//assigning type for button .
@@ -89,7 +88,6 @@ class Operation implements Display {
 	void emptyQueue(){
 		// empty the queue (reset the queue)
 	}
-
 	@Override
 	public void printExpression(String Expression) {
 		// printing values in queue.		
