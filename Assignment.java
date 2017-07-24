@@ -46,7 +46,6 @@ class Student{
 	int ID ;
 	String name;
 	String response[];
-	
 }
 //Generate report using User class
 class Report{
@@ -61,7 +60,6 @@ class Report{
 		report1();
 		report2();
 	}
-	
 	Student student[] = new Student[numberOfStudents];
 	Questions ques = new Questions();
 	public void report1(){
@@ -84,7 +82,6 @@ class Report{
 					//default not needed as response won't be out of options;
 				}			
 			}	
-		
 				String questionPart = ques.questions[quesnum].split(".")[1];		// removing string "Q1"
 				String[] overallQuestion = questionPart.split(",");			//splitting questions by "," and saving in string array
 				String type = overallQuestion[1].trim();					//checking if its single type or multiple
@@ -101,12 +98,9 @@ class Report{
 					for(int num=1;num<=5;num++){				//5 is fixed as number of options for each question will be fixed
 						System.out.println(num + "-" + (aCount/numberOfStudents*100));
 					}
-					
 				}
 		}					//ending loop with variable quesNum, that is from here it will shift to next question.
-			
 	}				//report1 ended
-	
 	public void report2(){
 		String responseString, responseA="", responseB="", responseC="";
 		char[] response;
@@ -134,7 +128,6 @@ class Report{
 					}	
 				}	
 			}	
-		
 			multipleQuestionResponse.put("A",responseA);
 			multipleQuestionResponse.put("B",responseB);
 			multipleQuestionResponse.put("C",responseC);
@@ -153,7 +146,6 @@ class Report{
 					System.out.print(availableOptions);
 				}
 		}					//ending loop with variable quesNum, that is from here it will shift to next question.
-			
 	}
 }
 //Retrieve questions from file
@@ -161,7 +153,6 @@ class Questions{
 	int numberOfQuestions;
 	String[] questions;
 	public Questions(){
-		
 	}
 	// retrieving questions from the file and saving in array.
 	public Questions(File file){
@@ -182,11 +173,10 @@ class Questions{
 			questions[numberOfQuestions] = temp;	//putting value of temp string in question array.	
 		}
 	}
-	
+	//Part B , sorting questions
 	public void sortQuestions(){
 		Arrays.sort(questions);
 	}
-	
 }
 
 
