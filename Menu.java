@@ -19,14 +19,14 @@ class Action implements DisplayMenu{
 	}
 }
 public class Menu implements DisplayMenu {
-	String ID, name;
+	String Id, name;
 	ArrayList<MenuItem> menuItem = new ArrayList<MenuItem>();
 	@Override
 	public void displayMenuItem() {
 	}
 }
 class MenuItem extends Menu{
-	String parentID;
+	String parentId;
 }
 class ActionableItem extends MenuItem{
 	/*this method will be used to perform final action for any menuItem by calling other methods. 
