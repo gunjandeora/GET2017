@@ -1,0 +1,29 @@
+<style>
+#div1{ 
+	width: 400px; 
+	height: 200px; 
+	padding: 10px 
+	border: 4px solid #000000;}
+</style> 
+
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text",ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script> 
+
+<p> Drag the Micky into the rectangle: </p>
+
+<div id="div1" style="border: thin solid black"ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<img id="drag1" src="http://www.desicomments.com/wp-content/uploads/Picture-Of-Micky-Mouse.jpg" draggable="true" ondragstart="drag(event)" width="336" height="200">
