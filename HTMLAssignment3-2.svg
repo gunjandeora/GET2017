@@ -1,0 +1,13 @@
+
+<svg <svg version="1.1" xmlns="http://www.w3.org/2000/svg">>
+	<circle cx="195" cy="322" r="127"
+	stroke-width="4" fill="lightblue" />
+	<path d= "M200,200 L200,450
+			A40,40 0 0,0 200,200
+			"  
+	
+	style = "stroke: grey;
+			stroke-width: 5;
+			fill: white;
+			"
+	/> 
