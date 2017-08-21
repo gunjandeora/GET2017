@@ -1,0 +1,6 @@
+1001,stationary,pencil,30
+1003,grocery,tea,200
+1005,stationary,eraser,20
+1007,grocery,sugar,200
+1002,furniture,sofa,3000
+1004,furniture,table,7000
