@@ -32,7 +32,7 @@ class AddArrayList {
                 second.add(sc.nextInt());
         }
         AddArrayList merger = new AddArrayList();
-        merger.mergeList(first, second);
+        mergeList(first, second);
         display(first);  
     }
     void display(ArrayList<Integer> list){
