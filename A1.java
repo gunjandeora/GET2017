@@ -9,8 +9,8 @@ public class A1 {
 	}
 } 
 class ArrayListOperations {
+	ArrayList<Integer> ob = new ArrayList<Integer>();
 	ArrayListOperations () {
-		ArrayList<Integer> ob = new ArrayList<Integer>();
 		ob.add(0);
 		ob.add(1);
 		ob.add(2);
@@ -23,7 +23,7 @@ class ArrayListOperations {
 		ob.add(9);
 		ob.add(10);
 		ob.add(11);
-		ob.add(5);
+		count = ob.size();
 		display();
 		boolean b = addAtLocation(20, 355);
 			if (b) {
@@ -37,20 +37,24 @@ class ArrayListOperations {
 			} else {
 				System.out.println("element exist at" + index);
 			}
-			index = retrieve(5, 7);
+			index = retrieve(7, 5);
 			if (index == -1) {
 				System.out.println("element doesn't exist");
 			} else {
 				System.out.println("element exist at" + index);
 			}
+			System.out.println("((((((((((((" + count);
 			b = removeDataOfLocation(3);
+			System.out.println("*********" + count);
 			if (b) {
 				System.out.println("Element deleted succesfully");
 				display();
 			} else {
 				System.out.println("Element can't be deleted");
 			}
+			System.out.println("#####");
 			b = removeData(0);
+			System.out.println("$$$$$");
 			if (b) {
 				System.out.println("Element deleted succesfully");
 				display();
@@ -58,6 +62,7 @@ class ArrayListOperations {
 				System.out.println("Element can't be deleted");
 			}
 			b = removeData(5);
+			System.out.println("!!!!!!!!");
 			if (b) {
 				System.out.println("Element deleted succesfully");
 				display();
@@ -73,33 +78,37 @@ class ArrayListOperations {
 		}
 		// Operations using array
 		Integer maxSize = 5;
-	    Integer dataArray[] = new Integer[maxSize];
+	    Integer dataArray[] = new Integer[ob.size()];
 	    Integer count = 0;
 		public void add(Integer data) {
 			if (count < maxSize) {
-				dataArray[count] = data;
+				ob.set(count, data);						//dataArray[count] = data;
 				count++;
 			}
 			else {
 				Integer i;
 				maxSize = (maxSize * 3) / 2 + 1;
 				Integer dataArray1[] = new Integer [maxSize];
-				for (i = 0; i < count; i++) {
-					dataArray1[i] = dataArray[i];
-				}
-				dataArray1[i] = data;
+//				for (i = 0; i < count; i++) {
+//					dataArray1[i] = dataArray[i];
+//				}
+//				dataArray1[i] = data;
+				ob.set(count, data);						//dataArray[count] = data;
 				count++;
-				dataArray = dataArray1;
+//				dataArray = dataArray1;
 			}
 		}
 		public boolean addAtLocation(Integer position, Integer data) {
 			Integer j;
 			if (position <= count) {
 					for (j = count - 1; j >= position; j--) {
-						dataArray[j + 1] = dataArray[j];
+						ob.set(j+1, ob.get(j));
+						System.out.println(ob.get(j));
+						//dataArray[j + 1] = dataArray[j];
 					}
-					dataArray[j + 1] = data;
+					//dataArray[j + 1] = data;
 					count++;
+					ob.set(j+1, data);
 				return true;
 			} else {
 				System.out.println("Invalid position");
@@ -107,23 +116,24 @@ class ArrayListOperations {
 			}
 		}
 		void display() {
-	System.out.println("\n\n");
+			System.out.println("count :" + count);
 			for (Integer i = 0; i < count; i++) {
-				System.out.println( dataArray[i]);
+				System.out.println( ob.get(i));
 			}
+			System.out.println("*******end of display");
 		}
-
 		public Integer retrieveIndex(Integer data) {
 			for (Integer i = 0; i < count; i++) {
-				if (dataArray[i] == data) {
+				if (ob.get(i) == data) {
 					return i;
 				}
 			}
 			return -1;
 		}
 		Integer retrieve(Integer data, Integer location) {
+			System.out.println(count);
 			for (Integer i = location; i < count; i++) {
-				if (dataArray[i] == data) {
+				if (ob.get(i) == data) {
 					return i;
 				}
 			}
@@ -131,9 +141,10 @@ class ArrayListOperations {
 		}
 		boolean removeDataOfLocation(Integer location) {
 			if (location < count) {
-				System.out.println("Deleted data is" + dataArray[location]);
+				System.out.println("Deleted data is" + ob.get(location));
 				for (Integer i = location; i < count - 1; i++) {
-					dataArray[i] = dataArray[i + 1];
+					//dataArray[i] = dataArray[i + 1];
+					ob.set(i, ob.get(i+1));
 				}
 				count--;
 				return true;
@@ -144,9 +155,10 @@ class ArrayListOperations {
 		}
 		boolean removeData(Integer data) {
 			for (Integer i = 0; i < count; i++) {
-				if (dataArray[i] == data) {
+				if (ob.get(i) == data) {
 					for (Integer j = i; j < count - 1; j++) {
-						dataArray[j] = dataArray[j + 1];
+						//dataArray[j] = dataArray[j + 1];
+						ob.set(j, ob.get(j+1));
 					}
 					count--;
 					return true;
@@ -156,22 +168,28 @@ class ArrayListOperations {
 		}
 		void clearList() {
 			count = 0;
+			ob.clear();
 		}
 		void reverseList() {
 			Integer i = 0, j = count - 1;
 			Integer temp;
 			for (; i <= j; i++, j--) {
-				temp = dataArray[i];
-				dataArray[i] = dataArray[j];
-				dataArray[j] = temp;
+				temp= ob.get(i);   								//temp = dataArray[i];
+				ob.set(i, ob.get(j));							//dataArray[i] = dataArray[j];
+				ob.set(j, temp);								//dataArray[j] = temp;
 			}
 		}
 		Integer get(Integer loc) {
-			return dataArray[loc];
+			//return dataArray[loc];
+			return ob.get(loc);
 		}
 		void sort() {
-			Arrays.sort(dataArray);
+			//Arrays.sort(dataArray);
+			ob.sort(null);
 		}
 	}
+	
+ 
+
 	
  
