@@ -6,10 +6,22 @@ import java.util.Scanner;
  *This class is used to perform all Counseling operations 
  */
 public class CounsellingProcess {
-    MyQueue studQueue = Entity.getStudentQueue();
-    MyQueue collegeQueue = Entity.getCollegeQueue();
-    MyArrayList studList = Entity.getStudentList();
-    MyArrayList collegeList = Entity.getCollegeList();
+    MyQueue studentsQueue, collegeQueue;
+    MyArrayList studentsList, collegeList;    
+    public CounsellingProcess(MyArrayList colList, MyArrayList studList) {
+		this.collegeList = colList;
+		this.studentsList = studList; 
+		studentsQueue = getQueue(studentsList);
+		collegeQueue = getQueue(collegeList);
+	}
+    MyQueue getQueue(MyArrayList list){
+    	MyQueue temp = new MyQueue();
+    	//list.sort();
+    	for(int i=0;i<list.size();i++){
+    		temp.enqueue(list.get(i));                      //retrieving queue from list
+    	}
+    	return temp;
+    }
     //This method will display Initial Menu
     public void display() {
         int choice;
@@ -18,15 +30,15 @@ public class CounsellingProcess {
         for (int index = 0; index < option.length; index++) {
                 System.out.println((index + 1) + "." + option[index]);
         }
-        System.out.print("Enter your Choice=");
         choice = getChoice(option.length);
-
         switch (choice) {
         case 1:
             showStudentDetail();
+            display();
             break;
         case 2:
             showCollegeDetail();
+            display();
             break;
         case 3:
             startProcess();
@@ -36,15 +48,14 @@ public class CounsellingProcess {
             display();
         }
     }
-
     /* This method will select each student rank wise
     * and perform counseling
     */
     public void startProcess() {
         int allSeats = getAllSeats();
-        while (!studQueue.isEmpty()) {
+        while (!studentsQueue.isEmpty()) {
             if (allSeats > 0) {
-                Student studObj = (Student) studQueue.dequeue();
+                Student studObj = (Student) studentsQueue.dequeue();
                 System.out.println("\n\nWelcome  " + studObj.getName()
                     + " in Counseling Process.....!!!!\n");
                 System.out.println("College List :--");
@@ -54,8 +65,8 @@ public class CounsellingProcess {
             } else {
                 System.out.println("\nThere are no more seats available in any college\n");
                 System.out.println("Student Name\t College Assigned");
-                for (int index = 0; index < studList.size(); index++) {
-                    Student obj = (Student) studList.get(index);
+                for (int index = 0; index < studentsList.size(); index++) {
+                    Student obj = (Student) studentsList.get(index);
                     if (index < getAllSeats())
                         System.out.println(obj.getName() + "\t\t  "
                                         + obj.getCollege().getName());
@@ -69,7 +80,6 @@ public class CounsellingProcess {
     }
     /**
      * This will assign college to specific student
-     * @param studObj
      */
     void chooseCollege(Student studObj) {
         System.out.println("Choose your Option:- ");
@@ -85,11 +95,13 @@ public class CounsellingProcess {
             chooseCollege(studObj);
         }
     }
+    // method to get choice from the user within the given range of size of list
     public int getChoice(int range) {
         Scanner sc = new Scanner(System.in);
         int ch=0 ;
         try {
             do {
+            	System.out.println("Enter choice");
                 ch = sc.nextInt();
             } while (ch < 1 || ch > range);
         } catch (Exception e) {
@@ -99,8 +111,8 @@ public class CounsellingProcess {
     }
     public void showStudentDetail() {
         System.out.println("Name\t Rank\t College Name");
-        for (int index = 0; index < studList.size(); index++) {
-            Student obj = (Student) studList.get(index);
+        for (int index = 0; index < studentsList.size(); index++) {
+            Student obj = (Student) studentsList.get(index);
             if (obj.getCollege() == null)
                 System.out.println(obj.getName() + "\t   " + obj.getRank()
                                 + "\t No College Assigned");
