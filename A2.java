@@ -7,15 +7,17 @@ public class A2 {
     } 
 }
 class AddArrayList {
-    void mergeList(ArrayList<Integer> first, ArrayList<Integer> second) {
+    // merging list second in first
+    void mergeList(MyArrayList first, MyArrayList second) {
         int secondSize = second.size() - 1;
         for (int i = 0; i <= secondSize; i++) {
             first.add(second.get(i));
         }
     }
+    // constructor calling other methods
     public AddArrayList() {
-        ArrayList<Integer> first = new ArrayList<Integer>();
-        ArrayList<Integer> second = new ArrayList<Integer>();
+        MyArrayList first = new MyArrayList();
+        MyArrayList second = new MyArrayList();
         System.out.println("How many element you want to display in first Array list");
         Scanner sc = new Scanner(System.in);
         int size = sc.nextInt();
@@ -31,11 +33,10 @@ class AddArrayList {
                 System.out.println("Enter value:");
                 second.add(sc.nextInt());
         }
-        AddArrayList merger = new AddArrayList();
         mergeList(first, second);
         display(first);  
     }
-    void display(ArrayList<Integer> list){
+    void display(ArrayList list){
         for(Integer i: list){
             System.out.print(i);
         }
