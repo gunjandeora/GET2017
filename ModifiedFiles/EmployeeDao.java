@@ -29,15 +29,17 @@ public class EmployeeDao implements UserDao{
 	}
 	// delete employee details with given ID
 	@Override
-	public JSONArray deleteEmployee(int id) {
+	public boolean deleteEmployee(int id) {
+		boolean flag = false;
 		for(int i=0;i<employeeArray.size();i++) {
 			JSONObject obj = (JSONObject) employeeArray.get(i);
 			if (Integer.parseInt(obj.get("id").toString()) == id) {
 				employeeArray.remove(i);
+				FileUtility.getInstance().writeFile(employeeArray);
+				flag = true;
 			}
-		}
-		FileUtility.getInstance().writeFile(employeeArray);
-		return employeeArray;
+		}		
+		return flag;
 	}
 	// get details of employee with given employee id
 	@Override
