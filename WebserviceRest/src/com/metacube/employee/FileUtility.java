@@ -14,7 +14,7 @@ import org.json.simple.parser.ParseException;
  * closing of FileReader and BufferedReader Object
  */
 public class FileUtility {
-	private static String FILE_LOCATION = new String("C:/Users/Deepak/eclipse-workspace/WebserviceRest/Employees.json");
+	private static String FILE_LOCATION = new String("C:/Users/Gunjan/eclipse-workspace/WebserviceRest/Employees.json");
 	private static FileUtility fileUtility = null;
 	private FileUtility() {}
 	
