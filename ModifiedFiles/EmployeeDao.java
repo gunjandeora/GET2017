@@ -69,7 +69,7 @@ public class EmployeeDao implements UserDao{
 	}
 	// update employee details in database
 	@Override
-	public JSONObject updateEmployee(int id) {
+	public boolean updateEmployee(int id) {
 		return null;
 	}
 	// returns the employeeArray
