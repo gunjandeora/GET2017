@@ -10,7 +10,7 @@ import org.json.simple.parser.ParseException;
 /*class for handling file operation.
  */
 public class FileUtility {
-	private static String FILE_LOCATION = getInput("Enter file path");
+	private String FILE_LOCATION ;
 	private static FileUtility fileUtility = null;
 	private FileUtility() {}
 	// get instance of singleton class FileUtility
@@ -23,7 +23,8 @@ public class FileUtility {
 	/*
 	* read text file and save employee details in employeeArray
 	*/
-	public JSONArray readFile() {
+	public JSONArray readFile(String path) {
+		FILE_LOCATION = path;
 		JSONArray employeeArray = null;
 		JSONParser parser = new JSONParser();
 		try {
@@ -52,12 +53,5 @@ public class FileUtility {
         } catch (IOException e) {
             e.printStackTrace();
         }
-	}
-	// print message and get appropriate input from user
-	Object getInput(String message){
-		Scanner sc = new Scanner(System.in);
-		System.out.println(message);
-		return scan.next();
-		
 	}
 }
