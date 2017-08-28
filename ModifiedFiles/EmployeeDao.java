@@ -10,11 +10,11 @@ public class EmployeeDao implements UserDao{
 	private static EmployeeDao employeeDao = null;
 	private EmployeeDao() {}
 	// get instance of Singleton class
-	public static EmployeeDao getInstance() {
+	public static EmployeeDao getInstance(String path) {
 		if(employeeDao == null) {
 			employeeDao = new EmployeeDao();
 		}
-		employeeDao.employeeArray = FileUtility.getInstance().readFile();
+		employeeDao.employeeArray = FileUtility.getInstance().readFile(path);
 		return employeeDao;
 	}
 	// check if employee array is empty or not
@@ -30,16 +30,15 @@ public class EmployeeDao implements UserDao{
 	// delete employee details with given ID
 	@Override
 	public boolean deleteEmployee(int id) {
-		boolean flag = false;
 		for(int i=0;i<employeeArray.size();i++) {
 			JSONObject obj = (JSONObject) employeeArray.get(i);
 			if (Integer.parseInt(obj.get("id").toString()) == id) {
 				employeeArray.remove(i);
 				FileUtility.getInstance().writeFile(employeeArray);
-				flag = true;
+				return true;
 			}
-		}		
-		return flag;
+		}
+		return false;		
 	}
 	// get details of employee with given employee id
 	@Override
@@ -56,7 +55,8 @@ public class EmployeeDao implements UserDao{
 	}
 	// take JSONObject and add it to database
 	@Override
-	public JSONArray addEmployee(JSONObject employee) {
+	public boolean addEmployee(JSONObject employee) {
+		boolean flag = true;
 		employee.putIfAbsent("id", id);
 		id++;
 		if(employeeArray == null) {
@@ -64,7 +64,8 @@ public class EmployeeDao implements UserDao{
 		}
 		employeeArray.add(employee);
 		FileUtility.getInstance().writeFile(employeeArray);
-		return employeeArray;
+		flag=true;
+		return flag;
 	}
 	// update employee details in database
 	@Override
