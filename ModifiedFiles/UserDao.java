@@ -4,10 +4,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 //Base Class for Employee
 public interface UserDao {
-	JSONArray deleteEmployee(int id);
+	boolean deleteEmployee(int id);
 	JSONObject getEmployeeDetails(int id);
-	JSONArray addEmployee(JSONObject employee);
-	JSONObject updateEmployee(int id);
+	boolean addEmployee(JSONObject employee);
+	boolean updateEmployee(int id);
 	JSONArray getAllEmployees();
 	JSONArray getAllEmployeesByName(String name);
 }
+
