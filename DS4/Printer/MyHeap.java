@@ -9,7 +9,7 @@ public class MyHeap {
 	MyHeap(int cap) {
 		heapSize = 0;
 		capacity = cap + 1;
-		job = new Job[cap];
+		job = new Job[capacity];
 	}
 	int parent(int position) {
 		return position / 2;
@@ -28,21 +28,33 @@ public class MyHeap {
 	/*
 	 * This method will insert job in the heap according to its priority
 	 */
-	void insert(String name, int priority) {
+	boolean insert(String name, int priority) {
 		if (heapSize > capacity) {
 			System.out.println("Heap OverFlow");
-			return;
+			return false;
 		}
 		Job newJob = new Job(name, priority);
 		if (heapSize == 0) {
 			job[++heapSize] = newJob;
-		}else {
-			job[++heapSize] = newJob;
+			System.out.println("cap " + capacity + " size: " + heapSize);
+			return true;
+		}
+		else if (++heapSize != capacity) {
+//			System.out.println("Heap OverFlow *******");
+//			return false;
+			System.out.println("3cap"+ heapSize);
+			job[heapSize] = newJob;
+			System.out.println("2cap " + capacity + " size: " + heapSize);
 			int pos = heapSize;
 			while (pos != 1	&& job[parent(pos)].getPriority() < job[pos].getPriority()) {
 				swap(parent(pos), pos);
 				pos = parent(pos);
 			}
+			return true;
+		}
+		else {		
+			System.out.println("Heap OverFlow");
+			return false;
 		}
 	}
 	/*
