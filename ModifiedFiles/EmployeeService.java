@@ -32,11 +32,16 @@ public class EmployeeService {
 	@Path("/getById/{id}")
 	@Produces({MediaType.APPLICATION_JSON})
 	public String getEmployeeDetail(@PathParam("id") int id) {
-		EmployeeDao employeeDao = (EmployeeDao)EmployeeDao.getInstance();
+		EmployeeDao employeeDao = (EmployeeDao)EmployeeDao.getInstance("C:/Users/Gunjan/eclipse-workspace/WebserviceRest/Employees.json");
 		if(employeeDao.employeeArrayIsEmpty())
 			return null;
-		return employeeDao.getEmployeeDetails(id).toString();
+		try{
+			return employeeDao.getEmployeeDetails(id).toString();
 		//return Response.status(200).entity(output).build();
+		}
+		catch (Exception e) {
+			System.out.println("Employee Detail cannot be retrieved");
+		}
 	}
 	/*
 	*Method to get employee details by their name
@@ -50,8 +55,13 @@ public class EmployeeService {
 		EmployeeDao employeeDao = (EmployeeDao)EmployeeDao.getInstance();
 		if(employeeDao.employeeArrayIsEmpty())
 			return null;
-		return employeeDao.getAllEmployeesByName(name).toString();
+		try{
+			return employeeDao.getAllEmployeesByName(name).toString();
 		//return Response.status(200).entity(output).build();
+		}
+		catch (Exception e) {
+			System.out.println("EmployeeDao cannot be retrieved");
+		}
 	}
 	/*
 	*Method to get all the employee details 
@@ -64,8 +74,13 @@ public class EmployeeService {
 		EmployeeDao employeeDao = (EmployeeDao)EmployeeDao.getInstance();
 		if(employeeDao.employeeArrayIsEmpty())
 			return null;
-		return employeeDao.getAllEmployees().toString();
+		try{
+			return employeeDao.getAllEmployees().toString();
 		//return Response.status(200).entity(output).build();
+		}catch (Exception e){
+			System.out.println("EmployeeDao cannot be retrieved");
+		}
+		
 	}
 	/*
 	*Method to create new employee
@@ -85,9 +100,14 @@ public class EmployeeService {
 		employee.put("age", age);
 		employee.put("department", department);
 		EmployeeDao employeeDao = (EmployeeDao)EmployeeDao.getInstance();
-		return employeeDao.addEmployee(employee).toString();
-		//return employeeDao.addEmployee((JSONObject)employee).toString();
-		//return Response.status(200).entity(output).build();
+		try{
+			return employeeDao.addEmployee(employee).toString();
+			//return employeeDao.addEmployee((JSONObject)employee).toString();
+			//return Response.status(200).entity(output).build();
+		}
+		catch(Exception e) {
+			System.out.println("EmployeeDao cannot be created");
+		}
 	}
 	/*
 	*Method to delete employee by its id.
@@ -101,7 +121,13 @@ public class EmployeeService {
 		EmployeeDao employeeDao = (EmployeeDao)EmployeeDao.getInstance();
 		if(employeeDao.employeeArrayIsEmpty())
 			return null;
-		return employeeDao.deleteEmployee(id).toString();
-		//return Response.status(200).entity(output).build(); 
+		try{
+			return employeeDao.deleteEmployee(id).toString();
+			//return Response.status(200).entity(output).build(); 
+		}
+		catch(Exception e){
+			System.out.println("Employee cannot be deleted");
+		}
+		
 	}
 }
