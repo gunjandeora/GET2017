@@ -1,8 +1,9 @@
 <html>
 	<head>
 		<title>HTML Session1 Assignment</title>
+		<script src="SetParam.js"></script>
 	</head>
-	<body>
+	<body onload = "setPara()">
 		<table width="80%" align="center">
 			<tr>
 				<td><img src="images/html5.png" width="50px"></td>
@@ -132,19 +133,5 @@
 		</table>
 		<hr/>
 		<footer align="center"><label >&copy;CopyRight 2016-17 | All Rights Reserved | Metacube Training</label></footer>
-	<SCRIPT> 
-			var contact = document.getElementById("contact_display"); //Get span
-			a_contact = document.createElement('a');
-			a_contact.href =  'ContactUs.html'; 
-			a_contact.textContent = 'Contact Us'; // <a>INNER_TEXT</a>
-			contact.appendChild(a_contact); // Append the link to the span
-			
-			var home = document.getElementById("home_display");
-			a_home = document.createElement('a');
-			a_home.href =  'index.html'; 
-			a_home.textContent = 'Home'; // <a>INNER_TEXT</a>
-			home.appendChild(a_home); // Append the link to the span
-			
-		</SCRIPT>
 	</body>
 </html>
