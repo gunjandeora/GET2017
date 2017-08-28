@@ -2,18 +2,25 @@ package DS4.Printer;
 import java.util.Scanner;
 public class PrinterMain {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-    	System.out.println("Enter capacity of heap");
-        MyHeap heap = new MyHeap(scan.nextInt());
+        Scanner scan = new Scanner(System.in);	
+        int capacity;
+    	do{
+    		System.out.println("Enter capacity of heap");
+    		capacity = scan.nextInt();
+    		if(capacity > 0){
+    			break;
+    		}
+    	}while (true);
+        MyHeap heap = new MyHeap(capacity);
         String operation[] = new String[] { "Add New Job", "Print Job", "Exit" };
         int pr;
         char ch = 0;
         do {
             int counter = 0;
             for (String opt : operation) {
-                System.out.println(++counter + "." + opt);
+                System.out.println(++counter + "." + opt);				//printing operations 
             }
-            int choice = getChoice(counter);
+            int choice = getChoice(counter);							//retrieving choice from user
             switch (choice) {
             case 1:
                 System.out.println("Enter job name");
