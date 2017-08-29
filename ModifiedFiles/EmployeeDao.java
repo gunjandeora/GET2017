@@ -55,8 +55,7 @@ public class EmployeeDao implements UserDao{
 	}
 	// take JSONObject and add it to database
 	@Override
-	public boolean addEmployee(JSONObject employee) {
-		boolean flag = true;
+	public JSONObject addEmployee(JSONObject employee) {
 		employee.putIfAbsent("id", id);
 		id++;
 		if(employeeArray == null) {
@@ -64,12 +63,11 @@ public class EmployeeDao implements UserDao{
 		}
 		employeeArray.add(employee);
 		FileUtility.getInstance().writeFile(employeeArray);
-		flag=true;
-		return flag;
+		return employee;
 	}
 	// update employee details in database
 	@Override
-	public boolean updateEmployee(int id) {
+	public JSONArray updateEmployee(int id) {
 		return null;
 	}
 	// returns the employeeArray
