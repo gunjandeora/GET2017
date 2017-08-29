@@ -43,7 +43,7 @@
 							<tr>
 								<td>City </td>
 								<td>
-									<select name="select_city" onChange="display()" onFocus="this.selectedIndex=-1" style="width: 175px;" id="CITY">
+									<select name="select_city" onChange="display()" onFocus="this.selectedIndex=-1" id="CITY" style="width: 175px;">
 										<option>--Select--</option>
 										<option>Jaipur</option>
 										<option>Agra</option>
@@ -87,7 +87,10 @@
 									<button onclick="clearTextFields()" type="button" style="height:50px;width:170px" >Clear Text Fields</button>
 								</td>
 								<td>
-									<button onclick="setLocalStorage()" type="submit" style="height:50px;width:170px" >Save Data</button>
+									<button onclick="setLocalStorage()" type="button" style="height:50px;width:170px" >Save Data</button>
+								</td>
+								<td>
+									<button onclick="validate_form()" type="button" style="height:50px;width:170px" >Check Validations</button>
 								</td>
 							</tr>
 						</table>
