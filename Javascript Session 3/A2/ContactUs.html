@@ -43,7 +43,7 @@
 							<tr>
 								<td>City </td>
 								<td>
-									<select name="select_city" onChange="display()" onFocus="this.selectedIndex=-1" id="CITY">
+									<select name="select_city" onChange="display()" onFocus="this.selectedIndex=-1" style="width: 175px;" id="CITY">
 										<option>--Select--</option>
 										<option>Jaipur</option>
 										<option>Agra</option>
@@ -73,21 +73,21 @@
 							<tr>
 								<td>Message</td>
 								<td>
-									<textarea name="message-box" onChange="limitText(this,250) " id="MESSAGE"></textarea>
+									<textarea name="message-box" onChange="limitText(this,250) " id="MESSAGE" cols="22" rows="4" ></textarea>
 								</td>
 							</tr>
 							<tr>
 								<td>	
-									<p><button onclick="getLocalStorage()" type="button">Get Local Storage</button></p>
+									<button onclick="getLocalStorage()" type="button" style="height:50px;width:170px" >Get Local Storage</button>
 								</td>
 								<td>									
-									<p><button onclick="clearLocalStorage()" type="button">Clear Storage</button></p>
+									<button onclick="clearLocalStorage()" type="button" style="height:50px;width:170px" >Clear Storage</button>
 								</td>
 								<td>
-									<p><button onclick="clearTextFields()" type="button">Clear Text Fields</button></p>
+									<button onclick="clearTextFields()" type="button" style="height:50px;width:170px" >Clear Text Fields</button>
 								</td>
 								<td>
-									<p><button onclick="setLocalStorage()" type="submit" >Save Data</button></p>
+									<button onclick="setLocalStorage()" type="submit" style="height:50px;width:170px" >Save Data</button>
 								</td>
 							</tr>
 						</table>
