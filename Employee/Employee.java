@@ -34,8 +34,7 @@ public class Employee implements Comparable<Object>{
     public int compareTo(Object o) {
        //return getEmployeeId().compareTo(o.getEmployeeId());
        return getEmployeeId().compareTo( ((Employee)o).getEmployeeId() );
-    }
-    
+    }    
     public String toString(){
         String str="";	
         str+= "emp id="+this.employeeId+" name= "+this.name+" address= "+this.address+"\n";
