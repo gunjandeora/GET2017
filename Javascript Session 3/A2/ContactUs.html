@@ -1,17 +1,19 @@
 <html>
 	<head>
 		<title>Contact Us</title>
+		<script src="SetParam.js"></script>
+		<script src="contact.js"></script>
 	</head>
-	<body>
+	<body onload = "setPara()">
 		<table width="80%" align="center">
 			<tr>
 				<td><img src="images/html5.png" width="50px"></td>
 				<td align="right">
-					<a href="index.html">Home</a>
+					<span id="home_display"></span>
 					<a href="">About</a>
 					<a href="">Product</a>
 					<a href="">Gallery</a>
-					<a href="contactus.html">Contact Us</a>
+					<span id="contact_display"></span>
 				</td>
 			</tr>
 		</table>
@@ -24,24 +26,25 @@
 			</tr>
 			<tr>
 				<td align="center">
-					<form name="contactForm" action="" method="POST" >
+					<form name="contact_form" action="" method="POST" onSubmit="validate_form()">
 						<table width="50%">
 							<tr>
 								<td>Name</td>
 								<td>
-									<input type="text" id="personName" />
+									<input type="text" name="person_name" id="NAME" />
 								</td>
 							</tr>
 							<tr>
 								<td>Email</td> 
 								<td>
-									<input type="text" id="email">
+									<input type="text" name="Email" id = "EMAIL">
 								</td>
 							</tr>
 							<tr>
 								<td>City </td>
 								<td>
-									<select id="cityName">
+									<select name="select_city" onChange="display()" onFocus="this.selectedIndex=-1" id="CITY">
+										<option>--Select--</option>
 										<option>Jaipur</option>
 										<option>Agra</option>
 										<option>Mathura</option>
@@ -50,71 +53,48 @@
 								</td>
 							</tr>
 							<tr>
+								<td>City Description</td>
+								<td>
+									<textarea id="city_description" style="display: none;" readonly></textarea>
+								</td>
+							</tr>							
+							<tr>
 								<td>Organization<br/>name</td>
 								<td>
-									<input type="text" id="organizationName">
+									<input type="text" name="organization_name" id="ORGANIZATION">
 								</td>
-							</tr>
+							</tr> 
 							<tr>
 								<td>Contact<br/>Number</td>
 								<td>
-									<input type="text" id="contactNumber">
+									<input type="text" name="contact_Number" id="CONTACT">
 								</td>
 							</tr>
 							<tr>
 								<td>Message</td>
 								<td>
-									<textarea id="messageBox"></textarea>
+									<textarea name="message-box" onChange="limitText(this,250) " id="MESSAGE"></textarea>
 								</td>
 							</tr>
 							<tr>
+								<td>	
+									<p><button onclick="getLocalStorage()" type="button">Get Local Storage</button></p>
+								</td>
+								<td>									
+									<p><button onclick="clearLocalStorage()" type="button">Clear Storage</button></p>
+								</td>
 								<td>
-									<input type="submit" name="submit" value="submit" 										onclick="getLocalStorage()">
+									<p><button onclick="clearTextFields()" type="button">Clear Text Fields</button></p>
+								</td>
+								<td>
+									<p><button onclick="setLocalStorage()" type="submit" >Save Data</button></p>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<input type="submit" name="reload" value="reload" 										onclick="clearLocalStorage()">
-								</td>
-							</tr>							
-							
 						</table>
 					</form>
 				</td>
 			</tr>
 		</table>
-		<hr/>
 		<footer align="center"><label >&copy;CopyRight 2016-17 | All Rights Reserved | Metacube Training</label></footer>
-		<script type="text/javascript">
-			document.getElementById("personName").value = localStorage.getItem("name");
-			document.getElementById("email").value = localStorage.getItem("email");
-			document.getElementById("cityName").value = localStorage.getItem("city");		
-			document.getElementById("organizationName").value = localStorage.getItem("organization");
-			document.getElementById("contactNumber").value = localStorage.getItem("contact");
-			document.getElementById("messageBox").value = localStorage.getItem("message");
-
-			function getLocalStorage(){	
-				if (typeof(Storage) !== "undefined") {
-		    		// Store
-		    		localStorage.setItem("name", document.getElementById("personName").value);
-					localStorage.setItem("email", document.getElementById("email").value);
-					//localStorage.setItem("city", document.getElementById("cityName").value);
-					
-					var city = document.getElementById("cityName");
-					var option = city.options[city.selectedIndex].value;
-					localStorage['city'] = option;
-					
-					localStorage.setItem("organization", document.getElementById("organizationName").value);
-					localStorage.setItem("contact", document.getElementById("contactNumber").value);
-					localStorage.setItem("message", document.getElementById("messageBox").value);
-		    
-				}
-			}
-
-			function clearLocalStorage(){
-				window.localStorage.clear();
-				//document.getElementById("result").innerHTML = localStorage.getItem("name");
-			}	
-		</script>	
 	</body>
 </html>
