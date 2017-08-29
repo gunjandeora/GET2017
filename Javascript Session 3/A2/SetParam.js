@@ -34,8 +34,8 @@ function setLocalStorage() {
 	var option = city.options[city.selectedIndex].value;
 	localStorage['city'] = option;					
 	localStorage.setItem("organization", document.getElementById("ORGANIZATION").value);
-	localStorage.setItem("contact", document.getElementsByName("CONTACT").value);
-	localStorage.setItem("message", document.getElementsByName("MESSAGE").value);
+	localStorage.setItem("contact", document.getElementById("CONTACT").value);
+	localStorage.setItem("message", document.getElementById("MESSAGE").value);
 	}
 }
 function clearLocalStorage(){
