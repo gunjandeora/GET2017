@@ -1,4 +1,3 @@
-alert("checking ");
 function validate_form(){
 	var list_of_errors = [];
 	var count = 0;	
@@ -7,7 +6,6 @@ function validate_form(){
 	var phone = document.contact_form.contact_Number.value;
 	var organization = document.contact_form.organization_name.value;
 	var city_option = document.contact_form.select_city.value;
-	alert("checking validations");
 	//name validation
 	if(name==null || name==""){
 		list_of_errors[count++] = 'Error '+(count)+' :Name Field is empty.';
