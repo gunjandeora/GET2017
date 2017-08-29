@@ -1,18 +1,18 @@
 package DS6.NewEmployee;
 public class Employee implements Comparable<Object> {
-	private int emp_ID;
+	private int employeeId;
 	private String name;
 	private String address;
-	public Employee(int emp_ID, String name, String address) {
-		this.emp_ID = emp_ID;
+	public Employee(int employeeId, String name, String address) {
+		this.employeeId = employeeId;
 		this.name = name;
 		this.address = address;
 	}
-	public void setEmpID(int emp_ID){
-		this.emp_ID = emp_ID;
+	public void setEmployeeId(int employeeId){
+		this.employeeId = employeeId;
 	}
-	public int getEmpID() {
-		return this.emp_ID;
+	public int getEmployeeId() {
+		return this.employeeId;
 	}
 	public void setName(String name){
 		this.name = name;
@@ -32,7 +32,7 @@ public class Employee implements Comparable<Object> {
 	 */
 	@Override
 	public int compareTo(Object o) {
-		return ((Integer)this.getEmpID()).compareTo((Integer)((Employee) o).getEmpID());
+		return ((Integer)this.getEmployeeId()).compareTo((Integer)((Employee) o).getEmployeeId());
 	}
 	public String toString(){
 		String str="";	
