@@ -7,20 +7,20 @@ public class EmployeeCollectionTest {
 	EmployeeCollection employeeCollection;
 	@Before
 	public void setUp() throws Exception {
-		employeeCollection = new EmployeeCollection();
-		employeeCollection.employees.add(new Employee(1, "Amit", "12-A Block"));
-		employeeCollection.employees.add(new Employee(2, "Anil", "13-A Block"));
-		employeeCollection.employees.add(new Employee(3, "Nikhil", "14-A Block"));
-		employeeCollection.employees.add(new Employee(4, "Manu", "15-A Block"));
-		employeeCollection.employees.add(new Employee(5, "Dev", "16-A Block"));
-		employeeCollection.employees.add(new Employee(6, "Abhay", "17-A Block"));
+	employeeCollection = new EmployeeCollection();
+	employeeCollection.employees.add(new Employee("5", "Avni", "MNO"));
+        employeeCollection.employees.add(new Employee("4", "Falak", "DEF"));
+        employeeCollection.employees.add(new Employee("4", "Chitra", "PQR"));
+        employeeCollection.employees.add(new Employee("3", "Palak", "JKL"));
+        employeeCollection.employees.add(new Employee("2", "Esha", "ABC"));
+        employeeCollection.employees.add(new Employee("1", "Babita", "GHI"));
 	}
 	/*
 	 * Test method for natural sorting of employee collection
 	 */
 	@Test
 	public void testNaturalSorting() {
-		String fExpected = "[Employee:Id= 1|Name= Amit|Address= 12-A Block, Employee:Id= 2|Name= Anil|Address= 13-A Block, Employee:Id= 3|Name= Nikhil|Address= 14-A Block, Employee:Id= 4|Name= Manu|Address= 15-A Block, Employee:Id= 5|Name= Dev|Address= 16-A Block, Employee:Id= 6|Name= Abhay|Address= 17-A Block]";
+		String fExpected = "[Employee:Id= 1|Name= Babita|Address= GHI, Employee:Id= 2|Name= Esha|Address= ABC, Employee:Id= 3|Name= Palak|Address= JKL, Employee:Id= 4|Name= Chitra|Address= PQR, Employee:Id= 4|Name= Falak|Address= DEF, Employee:Id= 5|Name= Avni|Address= MNO]";
 		employeeCollection.sort();
 		assertEquals(fExpected, employeeCollection.employees.toString());
 	}
@@ -29,7 +29,7 @@ public class EmployeeCollectionTest {
 	 */
 	@Test
 	public void testSortingByName() {
-		String fExpected = "[Employee:Id= 6|Name= Abhay|Address= 17-A Block, Employee:Id= 1|Name= Amit|Address= 12-A Block, Employee:Id= 2|Name= Anil|Address= 13-A Block, Employee:Id= 5|Name= Dev|Address= 16-A Block, Employee:Id= 4|Name= Manu|Address= 15-A Block, Employee:Id= 3|Name= Nikhil|Address= 14-A Block]";
+		String fExpected = "[Employee:Id= 6|Name= Avni|Address= MNO, Employee:Id= 1|Name= Babita|Address= GHI, Employee:Id= 4|Name= Chitra|Address= PQR, Employee:Id= 2|Name= Esha|Address= ABC, Employee:Id= 4|Name= Falak|Address= DEF, Employee:Id= 3|Name= Palak|Address= JKL]";
 		employeeCollection.sortByName();
 		assertEquals(fExpected, employeeCollection.employees.toString());
 	}
@@ -38,7 +38,7 @@ public class EmployeeCollectionTest {
 	 */
 	@Test
 	public void testGetUniqueEmployees() {
-		String fExpected = "[Employee:Id= 1|Name= Amit|Address= 12-A Block, Employee:Id= 2|Name= Anil|Address= 13-A Block, Employee:Id= 3|Name= Nikhil|Address= 14-A Block, Employee:Id= 4|Name= Manu|Address= 15-A Block, Employee:Id= 5|Name= Dev|Address= 16-A Block, Employee:Id= 6|Name= Abhay|Address= 17-A Block]";
+		String fExpected = "[Employee:Id= 1|Name= Babita|Address= GHI, Employee:Id= 2|Name= Esha|Address= ABC, Employee:Id= 3|Name= Palak|Address= JKL, Employee:Id= 4|Name= Chitra|Address= PQR, Employee:Id= 5|Name= Avni|Address= MNO]";
 		assertEquals(fExpected, employeeCollection.getUniqueEmployees().toString());
 	}
 }
