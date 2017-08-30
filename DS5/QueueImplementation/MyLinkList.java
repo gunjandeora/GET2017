@@ -6,15 +6,18 @@ public class MyLinkList<T> {
         start = null;
         size = 0;
     }
+	// get start node link
     public MyNode<T> getStart(){
     	return start;
     }
+	//reset start node 
     public void setStart(MyNode<T> node){
     	start = node;
     }
     public boolean isEmpty(){
         return start == null;
     }
+	//size of MyLinkedList
     public int getSize(){
         return size;
     }    
@@ -38,6 +41,7 @@ public class MyLinkList<T> {
         }
         ++size;
     }
+	//insert at a particular location
     public boolean insertAtLoc(T val , int loc){
     	++size ;
     	boolean flag = false;
@@ -68,7 +72,7 @@ public class MyLinkList<T> {
         size--;
         return flag;
     }
-    
+    // delete from a particular location
     public int deleteAtLoc(int location){      
     	int data = 0;
         if(location == 1) {        	
@@ -106,7 +110,7 @@ public class MyLinkList<T> {
         size-- ;
         return data;
     }    
-    
+    // delete by from a location by comparing value at each location
     public void deleteByValue(T val){
     	if(getStart().getData() == val){
     		if(getStart().getLink() == null){
@@ -138,8 +142,7 @@ public class MyLinkList<T> {
 	    		 System.out.println("Value Not Found");	
     	}
     }
-    
-    
+    // get value at particular location
     public T getAtLoc(int location){
     	MyNode<T> ptr = getStart();
        // location = location - 1 ;
@@ -153,7 +156,7 @@ public class MyLinkList<T> {
         }
         return null;
     }
-    
+    // reverse the MyLinkedList
     public void reverseLinkedList(){
     	MyNode<T> reversedPart = null;
     	MyNode<T> current = getStart();
@@ -165,7 +168,7 @@ public class MyLinkList<T> {
     	}
     	setStart(reversedPart);
     }
-    
+    //sort MyLinkedList
     public void sortLinkedList(){
     	if(size == 0){
     		System.out.println("No elements to sort");
@@ -188,7 +191,7 @@ public class MyLinkList<T> {
 	    	}
     	}
     }
-    
+    // clear MyLinkedList, reset start
     public void clearList(){
     	setStart(null);
     }
