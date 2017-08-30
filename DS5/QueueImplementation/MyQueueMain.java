@@ -41,7 +41,7 @@ public class MyQueueMain {
 					System.out.println("Front Element is=" + myQueue.getFront());
 					break;
 				case 5:
-					System.out.println("Queue Size = " + myQueue.size());
+					System.out.println("Queue Size = " + myQueue.size);
 					break;
 				case 6:
 					System.out.println(myQueue);
