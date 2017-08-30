@@ -17,8 +17,8 @@ public class TestConcordance {
 		cor.concordanceCharacter(testString);
 //		testList = cor.map.get('o');
 //		System.out.println("%%%%%%%" + testList.getAtLoc(1));
-		assertEquals(expected1, cor.map.get('o').getAtLoc(1));							//location of 'o' stored in MyLinkedList
-		assertEquals(expected2, cor.map.get('l').getAtLoc(3));							//location of second 'l' in MyLinkedList
-		assertEquals(expected3, cor.map.get('!').getAtLoc(1));
+		assertEquals(expected1, cor.map.get('o').getAtLoc(1));				//location of 'o' stored in MyLinkedList
+		assertEquals(expected2, cor.map.get('l').getAtLoc(3));				//location of second 'l' in MyLinkedList
+		assertEquals(expected3, cor.map.get('!').getAtLoc(1));				//location of '!' stored in MyLinkedList
 	}
 }
