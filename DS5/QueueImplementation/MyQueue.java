@@ -7,43 +7,47 @@ import java.util.LinkedList;
  * and remove methods of LinkedList fulfills the queue properties(FIFO)
  */
 public class MyQueue {
-	public LinkedList<Integer> head;
+	public MyLinkList<Integer> head;
+	int size;
 	MyQueue() {
-		head = new LinkedList<Integer>();
+		head = new MyLinkList<Integer>();
+		size=0;
 	}
 	// to add element in queue
 	boolean enqueue(int value) {
-		if(head.add(value)) {
+		if   (head.insertAtLoc(value, size)) {
+			size++;
 			return true;
 		}
 		else {
 			return false;
 		}
-		
 	}
 	// to remove element from the queue
 	int dequeue() {
-		return head.remove(0);
+		size--;
+		return head.deleteAtLoc(size);
 	}
-	int size() {
-		return head.size();
+	// get size of Myqueue
+	int getSize() {
+		return size;
 	}
 	boolean clear() {
-		head.clear();
+		head.clearList();
 		return true;
 	}
 	int getFront() {
-		return head.get(0);
+		return head.getStart().getData();
 	}
 	/**
 	 * Using Iterator to print elements of queue
 	 */
 	public String toString() {
-		Iterator<Integer> iterator = head.iterator();
-		while (iterator.hasNext()) {
-			System.out.println(iterator.next());
+		MyNode<Integer> node = head.getStart();	
+		//Iterator<Integer> iterator = head.iterator();
+		while (node.getLink()!=null) {
+			System.out.println(node.getData());
 		}
 		return "";
 	}
-
 }
