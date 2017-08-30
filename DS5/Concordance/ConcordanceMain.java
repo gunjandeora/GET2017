@@ -5,7 +5,8 @@ public class ConcordanceMain {
 		Concordance obj = new Concordance();
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter input String = ");
-		String str = scan.nextLine();
-		System.out.println(obj.concordanceCharacter(str));
+		String input = scan.nextLine();
+		obj.concordanceCharacter(input);
+		obj.displayMap();
 	}
 }
