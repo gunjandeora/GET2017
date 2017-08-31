@@ -1,3 +1,21 @@
+function saveIt(){
+	var checkErrorsInForm = validate_form();
+	if(checkErrorsInForm){
+		setLocalStorage();
+		clearTextFields();
+	}
+	else{
+		alert("please resolve errors in form first");
+		stopLoadingPage();
+	}
+	
+}
+
+function stopLoadingPage(){
+	$( "a" ).click(function( event ) {
+  event.preventDefault();
+});
+}
 function validate_form(){
 	var list_of_errors = [];
 	var count = 0;	
@@ -61,7 +79,53 @@ function validate_form(){
 		}
 		alert(str);
 		return false;
-	} 
+	}
+	else{
+	return true;
+	}	
+}
+
+function getLocalStorage(){	
+	alert("retrieving local storage");
+	document.getElementById("NAME").value = localStorage.getItem("name");
+	document.getElementById("EMAIL").value = localStorage.getItem("email");
+	document.getElementById("CITY").value = localStorage.getItem("city");
+	document.getElementById("ORGANIZATION").value = localStorage.getItem("organization");
+	document.getElementById("CONTACT").value = localStorage.getItem("contact");
+	document.getElementById("MESSAGE").value = localStorage.getItem("message");
+}
+
+function setLocalStorage() {
+	alert("saving data");
+	if (typeof(Storage) !== "undefined") {
+	// Storing data
+	localStorage.setItem("name", document.getElementById("NAME").value);
+	localStorage.setItem("email", document.getElementById("EMAIL").value);
+	//localStorage.setItem("city", document.getElementById("CITY").value);					
+	var city = document.getElementById("CITY");
+	var option = city.options[city.selectedIndex].value;
+	localStorage['city'] = option;					
+	localStorage.setItem("organization", document.getElementById("ORGANIZATION").value);
+	localStorage.setItem("contact", document.getElementById("CONTACT").value);
+	localStorage.setItem("message", document.getElementById("MESSAGE").value);
+	}
+}
+function clearLocalStorage(){
+	alert("local storage data cleared ");
+	window.localStorage.clear();
+	clearTextFields();
+	//document.getElementById("result").innerHTML = localStorage.getItem("name");
+}
+
+function clearTextFields(){	
+alert("clear boxes ");
+document.getElementById('NAME').value = "";
+document.getElementById('EMAIL').value = "";
+document.getElementById('CITY').value = "";
+document.getElementById('ORGANIZATION').value = "";
+document.getElementById('CONTACT').value = "";
+document.getElementById('MESSAGE').value = "";
+document.getElementById('city_description').value = "";
 }
 
 function limitText(ref,iLength) {
