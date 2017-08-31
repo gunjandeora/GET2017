@@ -1,9 +1,9 @@
 package DS7;
 import static org.junit.Assert.*;
 import org.junit.Test;
-public class LeftOccuranceTest {
+public class BinarySearchTest {
 	@Test
-	public void leftOccuranceTest() {
+	public void startSearch_array_intValue () {
 		BinarySearch test = new BinarySearch();
 		int array[] = new int[]{55,56,57,58,59,60},array2[] = new int[1];
 		int expected1 = 2, 
