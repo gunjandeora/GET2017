@@ -10,12 +10,18 @@ public class Concordance {
 	 * It returns Map with character as keys and list of integers as values
 	 */
 	public Map<Character, MyLinkList> concordanceCharacter(String input) {	
+		MyLinkList<Integer> list = new MyLinkList<Integer>();
+		if(input.equals("") || (input.charAt(0)==' ')){
+			list.insert(0);
+			map.put(' ', list);
+			return map;
+		}
 		for (int index = 0; index < input.length(); index++) {
 			char letter = input.charAt(index);
 			if (letter == ' ') {
 				continue;
 			}
-			MyLinkList<Integer> list = map.get(letter);
+			list = map.get(letter);
 			if (list == null) {
 				list = new MyLinkList<Integer>();
 			}
@@ -30,9 +36,7 @@ public class Concordance {
 		for(Map.Entry entry: map.entrySet() ){
 		    System.out.print(entry.getKey() + ": " );
 		    MyLinkList<Integer> list = (MyLinkList<Integer>) entry.getValue();
-
 		    	list.display();
-		    
 		}
 	}
 }
