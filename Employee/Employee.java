@@ -1,6 +1,6 @@
 package DS6.NewEmployee;
 import java.util.Comparator;
-public class Employee implements Comparable<Object>{
+public class Employee implements Comparable<Employee>{
     private String employeeId;
     private String name;
     private String address;
@@ -32,9 +32,8 @@ public class Employee implements Comparable<Object>{
      * Comparing according to employee IDs(Natural Order)
      */   
     @Override
-    public int compareTo(Object o) {
-       //return getEmployeeId().compareTo(o.getEmployeeId());
-       return getEmployeeId().compareTo( ((Employee)o).getEmployeeId() );
+    public int compareTo(Employee emp) {
+       return getEmployeeId().compareTo(emp.getEmployeeId() );
     }
     public String toString(){
         String str="";	
@@ -43,16 +42,16 @@ public class Employee implements Comparable<Object>{
     }
 }
 // Comparator for sorting according to Name
-class SortByName implements Comparator<Object>{
+class SortByName implements Comparator<Employee>{
     @Override
-    public int compare(Object emp1, Object emp2) {
-       return ( ((Employee)emp1).getEmployeeName() ).compareTo( ((Employee)emp2).getEmployeeName() );
+    public int compare(Employee emp1, Employee emp2) {
+       return (emp1.getEmployeeName().compareTo(emp2.getEmployeeName());
     }
 }
 // Comparator for sorting according to Name
 class SortByAddress implements Comparator<Object>{
     @Override
     public int compare(Object emp1, Object emp2) {
-       return ( ((Employee)emp1).getEmployeeAddress() ).compareTo( ((Employee)emp2).getEmployeeAddress() );
+       return (emp1.getEmployeeAddress()).compareTo(emp2.getEmployeeAddress());
     }
 }
