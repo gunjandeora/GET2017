@@ -4,12 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
 import DS2.CounsellingSystem.MyArrayList;
-public class TestConcordance {
-	Concordance cor = new Concordance();
-	
-	Map<Character, MyLinkList> map = new HashMap<Character, MyLinkList>();
+public class ConcordanceTest {
 	@Test
-	public void testStringConcordance() {
+	public void concordanceCharacter_NoInputValue_intValue() {
+		Concordance cor = new Concordance();
+		Map<Character, MyLinkList> map = new HashMap<Character, MyLinkList>();
 		String testString1 = "hello world!", 
 			testString2 = " ";
 		Integer expected1 = 4,
