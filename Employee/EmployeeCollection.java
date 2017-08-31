@@ -32,16 +32,27 @@ public class EmployeeCollection {
         Collections.sort(employees, new SortByAddress());
     }
     /*
-     * returns the unique collection of employees
-     * on the basis of their ids
+     * returns the boolean value to check if employee can be added in list or not
      */
-    public Set<Employee> getUniqueEmployees(){
-        Map<Integer,Employee> uniqueEmployeeMapList = new HashMap<Integer,Employee>();
+    public boolean getUniqueEmployee(Employee employee){
         for(int emp=0;emp<employees.size();emp++){
             Employee tempEmployee = employees.get(emp);
-            uniqueEmployeeMapList.put(Integer.parseInt(tempEmployee.getEmployeeId()), tempEmployee);
+            if(tempEmployee.getEmployeeId().equals(employee.getEmployeeId())){
+                return false;
+            }
         }
-        Set<Employee> uniqueEmployee = new HashSet<Employee>(uniqueEmployeeMapList.values());    
-        return uniqueEmployee;
+       return true;
+    }
+    /*
+     * adding employee to ArrayList
+     */
+    public String addEmployee(Employee emp){
+        if(getUniqueEmployee()){
+            employees.add(emp);
+            return "employee added successfully";
+        }
+        else{
+            return "Employee cannot be Added";
+        }
     }
 }
