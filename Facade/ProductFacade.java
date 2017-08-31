@@ -44,7 +44,7 @@ public class ProductFacade {
 	}
        //method to retrieve values from the files using dao class
 	public void retrieveValues(){
-	productDetailsDaoObject.setFilePath(ProductsConstants.PRODUCT_DETAILS_FILE_PATH);		//Initializing file to retrieve data
+	productDetailsDaoObject.setFilePath(ProductsConstants.productDetailsFileName);		//Initializing file to retrieve data
 	productDetailsList=productDetailsDaoObject.readProductDetails();						//saving data in List
 	}
    /*
