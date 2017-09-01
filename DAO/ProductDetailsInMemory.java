@@ -35,7 +35,7 @@ public class ProductDetailsInMemory {
 				scan = new Scanner(file);
 				while(scan.hasNext()){
 					productDetails = scan.nextLine();
-//						System.out.println(productDetails);
+//					System.out.println(productDetails);
 					String[] splitedProductDetails=productDetails.split(",");
 					int productID=Integer.parseInt(splitedProductDetails[0]);
 					String productType = splitedProductDetails[1];
