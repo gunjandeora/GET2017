@@ -2,34 +2,46 @@ package Facade;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import Facade.*;
 import model.OrderedProduct;
 import model.Product;
+import model.UserCart;
 import view.Display;
 import view.Input;
 public class Controller {
 	Display displayOutput=Display.getInstance();
-	Input getInput= Input.getInstance();
-	HashMap<Integer,Product> productDetailsList;
-	HashMap<Product, OrderedProduct> selectedProducts;
+	Input getInput= new Input();
+	CartOperation cartOperation ;
+//	HashMap<Integer,Product> productDetailsList;
+//	HashMap<Product, OrderedProduct> selectedProducts;
 	//function to check if cart is empty or not.
+	
+	public Controller() throws IOException{
+		cartOperation= new CartOperation();
+		startShopping();
+	}
 	public boolean isCartNull(){
-		if( selectedProducts.size()==0){
+		if( cartOperation.isCartNull()){
 			return true;
 		}
 		else{
 			return false;
 		}
 	}
+	
+	public void startShopping() throws IOException{
+		displayOutput.displayMainMenu();
+		selectResponse(getInput.getChoice());
+		
+	}
 	//method to perform action according to the choice given by the user.
 	public void selectResponse(String choice) throws IOException{
 		//condition to check if choice is valid or not.
 		if(isValidChoice(choice)){
-			CartOperation cartOperationsFacade=CartOperation.getInstance();
 			//switch case to execute the selected choice.
 			switch(Integer.parseInt(choice)){
 			//to display product details
-			case 1:	productDetailsList = cartOperationsFacade.displayProductList();
-			displayOutput.displayProducts(productDetailsList);
+			case 1:	displayOutput.displayProducts(cartOperation.getProductDetails());
 					break;
 			// to add product to cart.
 			case 2:	String ID=getInput.getProductID();
@@ -38,15 +50,16 @@ public class Controller {
 					}
 					String productQuantity = getInput.getProductQuantity();
 					while(!isNumber(productQuantity)){
-		productQuantity=getInput.getProductQuantity();
+							productQuantity=getInput.getProductQuantity();
 					}
-					cartOperationsFacade.addProductToCart(Integer.parseInt(ID),Integer.parseInt(productQuantity));
+					cartOperation.addProductToCart(Integer.parseInt(ID),Integer.parseInt(productQuantity));
 					break;
 			//to delete product from cart.		
 			case 3:	String productID=getInput.getProductID();
 					while(!isNumber(productID)){
 						productID=getInput.getProductID();
-					}					cartOperationsFacade.deleteProductFromCart(Integer.parseInt(productID));
+					}					
+					cartOperation.deleteProductFromCart(Integer.parseInt(productID));
 					break;
 			//to update product quantity in cart.		
 			case 4:	String Id=getInput.getProductID();
@@ -57,18 +70,17 @@ public class Controller {
 					while (!isNumber(productQuantityy)) {
 						productQuantity = getInput.getProductQuantity();
 					}
-					cartOperationsFacade.updateProductCart(Integer.parseInt(Id),
+					cartOperation.updateProductCart(Integer.parseInt(Id),
 							Integer.parseInt(productQuantityy));
 					break;
 			//to display user cart.
-			case 5:	 selectedProducts=cartOperationsFacade.displayCart();
-					if(isCartNull()){
+			case 5:	if(isCartNull()){
 			        	return;
 			        }
-					displayOutput.displayUserCart(selectedProducts);
+					displayOutput.displayUserCart(cartOperation.displayCart());	 
 					break;
 			//to generate bill.		
-			case 6:	ArrayList<String> bill=cartOperationsFacade.generateBill();
+			case 6:	ArrayList<String> bill=cartOperation.generateBill();
 					displayOutput.generateBill(bill);
 					break;
 			//to exit program.		
