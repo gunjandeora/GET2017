@@ -3,74 +3,50 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import DAO.ProductDetailsInMemory;
 import model.*;
 //Facade class to perform business logics and to validate input from the user
 public class CartOperation {
-	private static CartOperation cartOperationsObject;
-	private static HashMap<Product, OrderedProduct> selectedProducts;
-	ProductDetailsInMemory productDetailsInMemory = new ProductDetailsInMemory();
-	HashMap<Integer, Product> productDetails;
-	UserCart userCart = new UserCart();
-	// private constructor called in getInstance method, Initialize the userCart
-	private CartOperation() throws IOException {
-		userCart = new UserCart();
-		selectedProducts = userCart.getSelectedProducts();
-		productDetails = productDetailsInMemory.readProductDetails();
+	ProductDetailsInMemory productDetailsInMemoryObject = new ProductDetailsInMemory();
+	HashMap<Integer,Product> productDetails;
+	static UserCart userCart = new UserCart();
+	public CartOperation() throws IOException{
+		productDetails = productDetailsInMemoryObject.readProductDetails();
 	}
 	/*
-	 * getter of the constructor to get the instance of the object,to make singleton class
+	 * getter for productDetails list
 	 */
-	public static CartOperation getInstance() throws IOException{
-		if(cartOperationsObject==null){
-			cartOperationsObject=new CartOperation();
-			return cartOperationsObject;
-		}
-		return cartOperationsObject;
-	}
-	/*
-	 * getter and setter for productDetails list
-	 */
-	public HashMap<Integer, Product> getProductDetails() {
+	public HashMap<Integer,Product> getProductDetails() {
 		return productDetails;
-	}
-	public void setProductDetails(HashMap<Integer, Product> productDetails) {
-		this.productDetails = productDetails;
 	}
 	/*
 	 * getter and setter for selected products list
 	 */
-	public static HashMap<Product, OrderedProduct> getSelectedProducts() {
-		return selectedProducts;
+	public static HashMap<Integer,OrderedProduct> getSelectedProducts() {
+		return userCart.getSelectedProducts();
 	}
-	public static void setSelectedProducts(HashMap<Product, OrderedProduct> selectedProducts) {
-		CartOperation.selectedProducts = selectedProducts;
-	}
-	/* method to display product list which return hash map od product details
-	 */
-	public HashMap<Integer,Product> displayProductList(){
-		return productDetailsInMemory.getProductList();
+	public static void setSelectedProducts(HashMap<Integer, OrderedProduct> selectedProducts) {
+		userCart.setSelectedProducts(selectedProducts);
 	}
 	/* method to check if product is present in product list 
 	 */
 	public boolean isProductInProductDetails(int productID){
-		if(productDetailsInMemory.getProductList().containsKey(productID)){
+		if(productDetailsInMemoryObject.getProductList().containsKey(productID)){
 			return true;
 		}
 		return false;
 	}
 	/* method to check if product is present in cart or not 
 	 */
-	public boolean isProductInCart(Product productDetails){
-		if(userCart.getSelectedProducts().containsKey(productDetails)){
+	public boolean isProductInCart(int productID){
+		if(userCart.getSelectedProducts().containsKey(productID)){
 			return true;
 		}
 		return false;
 	}
 	// method to check if cart is empty or not 
 	public boolean isCartNull(){
-		if( selectedProducts.size()==0){
+		if( userCart.getSelectedProducts().isEmpty()){
 			return true;
 		}
 		else{
@@ -84,18 +60,14 @@ public class CartOperation {
 		//condition to check if requested product is present in productList or not.
 		if(isProductInProductDetails(productID)){
 			//condition to check if requested product is present in cart or not.
-			if(isProductInCart(productDetails.get(productID))){
-				int quantity=selectedProducts.get(productDetails.get(productID)).getProductQuantity();
+			if(isProductInCart(productID)){
+				int quantity = userCart.getSelectedProducts().get(productID).getProductQuantity();
 				quantity+=productQuantity;
-//				selectedProducts.get(productDetails.get(productID)).setProductQuantity(quantity);		//updating new total quantity of product.
-//				totalProductCost=(productDetails.get(productID).getProductPrice())*quantity;				
-//				selectedProducts.get(productDetails.get(productID)).setTotalCost(totalProductCost);		//updating new total costs of product.
 				updateProductCart(productID, quantity);												
 			}
 			else{
 				totalProductCost=(productDetails.get(productID).getProductPrice())*productQuantity;
-				selectedProducts.put(productDetails.get(productID), new OrderedProduct(productID, productQuantity, totalProductCost));
-				userCart.setSelectedProducts(selectedProducts);			//updating cart
+				userCart.selectedProducts.put(productID, new OrderedProduct(productID, productQuantity, totalProductCost));	//updating cart	
 			}
 			System.out.println("Product "+ productID+ " has been successfully added to your cart");
 		}
@@ -115,9 +87,9 @@ public class CartOperation {
 				//condition to check if requested product is present in productList or not.
 				if(isProductInProductDetails(productID)){
 					//condition to check if requested product is present in cart or not.
-					if(isProductInCart(productDetails.get(productID))){	
+					if(isProductInCart(productID)){	
 					//deleting the product from hashmap having selected products.
-						selectedProducts.remove(productDetails.get(productID));
+						userCart.selectedProducts.remove(productID);
 						System.out.println("product Removed Successfully");
 						return true;
 					}
@@ -135,12 +107,12 @@ public class CartOperation {
 		/*
 		 * method to display cart to user.This will return a hash map to Facade class.
 		 */
-		public HashMap<Product, OrderedProduct>  displayCart(){
+		public HashMap<Integer, OrderedProduct>  displayCart(){
 			//condition to check if cart is empty
 			if(isCartNull()){
 				System.out.println("Cart is empty");
 			}
-			return selectedProducts;
+			return userCart.getSelectedProducts();
 		}
 		
 		/*
@@ -156,12 +128,12 @@ public class CartOperation {
 				//condition to check if requested product is present in productList or not.
 				if(isProductInProductDetails(productID)){
 					//condition to check if requested product is present in cart or not.
-					if(isProductInCart(productDetails.get(productID))){
+					if(isProductInCart(productID)){
 						double totalProductCost;
 						//updating the value of quantity of product.
-						selectedProducts.get(productDetails.get(productID)).setProductQuantity(productQuantity);		//updating quantity of product				
-						totalProductCost=(productDetails.get(productID).getProductPrice())*productQuantity;				
-						selectedProducts.get(productDetails.get(productID)).setTotalCost(totalProductCost);		//updating new total costs of product.
+						int quantity = userCart.selectedProducts.get(productID).getProductQuantity();
+						totalProductCost = (quantity + productQuantity)* productDetails.get(productID).getProductPrice();
+						userCart.selectedProducts.put(productID, new OrderedProduct(productID, quantity + productQuantity, totalProductCost)  );  //updating quantity of product		
 						System.out.println(productID+ " updated Successfully with new Quantity" + productQuantity + " with total cost as " + totalProductCost);
 						return true;
 					}
@@ -176,7 +148,6 @@ public class CartOperation {
 				}
 			}
 		}
-		
 		/* method to generate the bill and return a list to the controller.
 		 */
 	public ArrayList<String> generateBill(){
@@ -187,16 +158,15 @@ public class CartOperation {
 		bill.add("********************************************************");
 		bill.add("Product Code    Product Type    Product Name    Quantity");
 		double finalCost=0;
-		for(Map.Entry<Product,OrderedProduct> mapSet :userCart.getSelectedProducts().entrySet()){
+		for(Map.Entry<Integer,OrderedProduct> mapSet :userCart.getSelectedProducts().entrySet()){
 			finalCost+=mapSet.getValue().getTotalCost();
-			bill.add(mapSet.getKey().getProductID()+"\t\t"+mapSet.getKey().getProductType()
-					+"\t"+mapSet.getKey().getProductName()+"\t\t"+mapSet.getValue().getProductQuantity());
+			bill.add(mapSet.getKey()+"\t\t"+productDetails.get(mapSet).getProductType()	+"\t"+productDetails.get(mapSet).getProductName() +"\t\t"+mapSet.getValue().getProductQuantity());
 		}
 		bill.add("********************************************************");
 
 		bill.add("                 Individual Product Cost                ");
-		for(Map.Entry<Product,OrderedProduct> mapSet :userCart.getSelectedProducts().entrySet()){
-			bill.add(mapSet.getKey().getProductID()+"\t"+mapSet.getKey().getProductName()+" =\t"+mapSet.getValue().getTotalCost());
+		for(Map.Entry<Integer,OrderedProduct> mapSet :userCart.getSelectedProducts().entrySet()){
+			bill.add(mapSet.getKey() +"\t"+productDetails.get(mapSet).getProductName() +" =\t"+mapSet.getValue().getTotalCost());
 		}
 		bill.add("********************************************************");
 		bill.add("                       Total Cost                       ");
