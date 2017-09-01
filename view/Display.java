@@ -25,11 +25,9 @@ public class Display {
 		}
 	}
 	//function to display UserCart.
-	public void displayUserCart(HashMap<Product,OrderedProduct> selectedProducts){
-		for(Map.Entry<Product,OrderedProduct> mapSet :selectedProducts.entrySet()){
-			System.out.println(mapSet.getKey().getProductID()+"\t\t"
-								+mapSet.getKey().getProductType()+"\t\t"
-								+mapSet.getKey().getProductName()+"\t\t"
+	public void displayUserCart(HashMap<Integer,OrderedProduct> selectedProducts){
+		for(Map.Entry<Integer,OrderedProduct> mapSet :selectedProducts.entrySet()){
+			System.out.println(mapSet.getKey()+"\t\t"
 								+mapSet.getValue().getProductQuantity()+"\t\t"
 								+mapSet.getValue().getTotalCost());
 		}
@@ -43,6 +41,7 @@ public class Display {
 	//method to display menu
 	public void displayMainMenu(){
 		ArrayList<String> mainMenu = new ArrayList<String>();
+		mainMenu.add("display product list");
 		mainMenu.add("View product list");
 		mainMenu.add("Add product to cart");
 		mainMenu.add("Delete product from cart");
