@@ -1,5 +1,7 @@
 package DS8.TreeSort;
 import java.util.List;
+
+import DS2.Queue.MyArrayList;
 public class MyBinarySearchTree {
 	MyNode<Student> root;
 	public MyBinarySearchTree() {
@@ -8,59 +10,53 @@ public class MyBinarySearchTree {
 	public MyNode<Student> getRoot() {
 		return root;
 	}
-
-	/**
+	/*
 	 * This method will insert new student object in the BST
-	 * @param data
 	 */
-	public void insertNode(Student data) {
-
-		MyNode<Student> newNode = new MyNode<Student>(data);
+	public Boolean insertNode(Student student) {
+		MyNode<Student> newNode = new MyNode<Student>(student);
+		boolean flag = false;
 		if (root == null) {
 			root = newNode;
-			return;
+			flag = true;
+			return flag;
 		}
-
 		MyNode<Student> temp = root;
 		MyNode<Student> pointer = null;
 		while (true) {
 			pointer = temp;
-			if (data.getRollNo() > temp.getData().getRollNo()) {
+			if (student.getRollNo() > temp.getData().getRollNo()) {			//if roll no is greater than root's roll no.
 				temp = temp.getRight();
 				if (temp == null) {
 					pointer.setRight(newNode);
-					return;
+					flag = true;
+					return flag;
 				}
 			} else {
 				temp = temp.getLeft();
 				if (temp == null) {
 					pointer.setLeft(newNode);
-					return;
+					flag = true;
+					return flag;
 				}
 			}
 		}
-
 	}
 	/*
 	 * Printing InOrder of BST (Tree Sort)
 	 */
-	public List<Integer> inOrder(MyNode<Student> node, List<Integer> list) {
+	public MyArrayList inOrder(MyNode<Student> node, MyArrayList myArrayList) {
 		if (node != null) {
-
-			inOrder(node.getLeft(), list);
-			list.add(node.getData().getRollNo());
+			inOrder(node.getLeft(), myArrayList);
+			myArrayList.add(node.getData().getRollNo());
 			System.out.println(node.getData().getRollNo() + " :: "
 					+ node.getData().getName());
-			inOrder(node.getRight(), list);
+			inOrder(node.getRight(), myArrayList);
 		}
-		return list;
+		return myArrayList;
 	}
-
-	/**
+	/*
 	 * It calculates total nodes
-	 * 
-	 * @param parent
-	 * @return Returns total number of nodes
 	 */
 	public int size(MyNode<Student> parent) {
 		if (parent == null)
