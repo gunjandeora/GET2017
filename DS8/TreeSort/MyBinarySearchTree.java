@@ -1,6 +1,5 @@
 package DS8.TreeSort;
 import java.util.List;
-
 import DS2.Queue.MyArrayList;
 public class MyBinarySearchTree {
 	MyNode<Student> root;
