@@ -64,11 +64,11 @@ public class MyLinkList<T> {
         ++size ;
     }
     
-    public void deleteAtLoc(int location){        
+    public boolean deleteAtLoc(int location){        
         if(location == 1) {
             start = start.getLink();
             size--; 
-            return ;
+            return false;
         }
         if (location == size) {
         	MyNode<T> current = getStart();
@@ -81,7 +81,7 @@ public class MyLinkList<T> {
             }
             temp.setLink(null);
             size--;
-            return;
+            return true;
         }
         MyNode<T> ptr = getStart();
         location = location - 1 ;
@@ -95,9 +95,10 @@ public class MyLinkList<T> {
             ptr = ptr.getLink();
         }
         size-- ;
+        return true;
     }    
     
-    public void deleteByValue(T val){
+    public boolean deleteByValue(T val){
     	if(getStart().getData() == val){
     		if(getStart().getLink() == null){
     			setStart(null);
@@ -106,6 +107,7 @@ public class MyLinkList<T> {
     		}
     		System.out.println("deleted "+val);
     		size--;
+    		return true;
     	}
     	else{
     		MyNode<T> nextptr = getStart();
@@ -123,9 +125,11 @@ public class MyLinkList<T> {
 	    	 if(flag){
 	    		 size-- ;
 	    		 System.out.println("deleted "+val);
+	    		 return true;
 	    	 }
 	    	 else
 	    		 System.out.println("Value Not Found");	
+	    	 return false;
     	}
     }
     
