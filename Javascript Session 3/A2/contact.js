@@ -6,15 +6,8 @@ function saveIt(){
 	}
 	else{
 		alert("please resolve errors in form first");
-		stopLoadingPage();
+		return false;
 	}
-	
-}
-
-function stopLoadingPage(){
-	$( "a" ).click(function( event ) {
-  event.preventDefault();
-});
 }
 function validate_form(){
 	var list_of_errors = [];
