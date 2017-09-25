@@ -1,8 +1,6 @@
 package DS5.QueueImplementation;
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
 import DS5.Concordance.MyLinkList;
 public class MyLinkedListTest {
 	MyLinkList<Integer> list = new MyLinkList<Integer>();
