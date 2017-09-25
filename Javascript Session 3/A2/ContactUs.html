@@ -26,7 +26,7 @@
 			</tr>
 			<tr>
 				<td align="center">
-					<form name="contact_form" action="" method="POST">
+					<form name="contact_form" action="" method="POST" onSubmit="return saveIt()" id="formID">
 						<table width="50%">
 							<tr>
 								<td>Name</td>
@@ -84,7 +84,7 @@
 									<button onclick="clearLocalStorage()" type="button" style="height:50px;width:170px" >Clear Storage</button>
 								</td>
 								<td>
-									<button onclick="return saveIt()" type="button" style="height:50px;width:170px" >Submit</button>									
+									<input id="submitID" type="submit" value="Submit1" style="height:50px;width:170px">								
 								</td>
 							</tr>
 						</table>
