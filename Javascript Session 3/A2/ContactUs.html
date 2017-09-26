@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<title>Contact Us</title>
+		<script src="SetParam.js"></script>
+		<script src="contact.js"></script>
+	</head>
+	<body onload = "setPara()">
+		<table width="80%" align="center">
+			<tr>
+				<td><img src="images/html5.png" width="50px"></td>
+				<td align="right">
+					<span id="home_display"></span>
+					<a href="">About</a>
+					<a href="">Product</a>
+					<a href="">Gallery</a>
+					<span id="contact_display"></span>
+				</td>
+			</tr>
+		</table>
+		<hr/>
+		<table align="center" width="80%">
+			<tr>
+				<td>
+					<img src="images/contact.jpg" alt="contact_page image" width="100%"/>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<form name="contact_form" action="" method="POST" onSubmit="return saveIt()" id="formID">
+						<table width="50%">
+							<tr>
+								<td>Name</td>
+								<td>
+									<input type="text" name="person_name" id="NAME" />
+								</td>
+							</tr>
+							<tr>
+								<td>Email</td> 
+								<td>
+									<input type="text" name="Email" id = "EMAIL">
+								</td>
+							</tr>
+							<tr>
+								<td>City </td>
+								<td>
+									<select name="select_city" onChange="display()" onFocus="this.selectedIndex=-1" id="CITY" style="width: 175px;">
+										<option>--Select--</option>
+										<option>Jaipur</option>
+										<option>Agra</option>
+										<option>Mathura</option>
+										<option>Nagpur</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>City Description</td>
+								<td>
+									<textarea id="city_description" style="display: none;" readonly></textarea>
+								</td>
+							</tr>							
+							<tr>
+								<td>Organization<br/>name</td>
+								<td>
+									<input type="text" name="organization_name" id="ORGANIZATION">
+								</td>
+							</tr> 
+							<tr>
+								<td>Contact<br/>Number</td>
+								<td>
+									<input type="text" name="contact_Number" id="CONTACT">
+								</td>
+							</tr>
+							<tr>
+								<td>Message</td>
+								<td>
+									<textarea name="message-box" onChange="limitText(this,250) " id="MESSAGE" cols="22" rows="4" ></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td>	
+									<button onclick="getLocalStorage()" type="button" style="height:50px;width:170px" >Get Local Storage</button>
+								</td>
+								<td>									
+									<button onclick="clearLocalStorage()" type="button" style="height:50px;width:170px" >Clear Storage</button>
+								</td>
+								<td>
+									<input id="submitID" type="submit" value="Submit1" style="height:50px;width:170px">								
+								</td>
+							</tr>
+						</table>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<footer align="center"><label >&copy;CopyRight 2016-17 | All Rights Reserved | Metacube Training</label></footer>
+	</body>
+</html>
