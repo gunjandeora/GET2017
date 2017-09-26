@@ -1,5 +1,6 @@
 package DS5.QueueImplementation;
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 public class MyQueueTest {
 	MyQueue myQueue = new MyQueue();	
@@ -9,7 +10,7 @@ public class MyQueueTest {
 		assertEquals(true, myQueue.enqueue(5));
 	}
 	@Test
-	public void dequeue_null_Integer(){
+	public void dequeue_null_valueDeleted(){
 		myQueue.enqueue(22);
 		myQueue.enqueue(25);
 		myQueue.enqueue(35);
@@ -19,7 +20,7 @@ public class MyQueueTest {
 		assertEquals(35, myQueue.dequeue());
 	}
 	@Test
-	public void getFront_null_Integer() {
+	public void getFront_null_valueOfFrontNode() {
 		myQueue.enqueue(35);
 		myQueue.enqueue(45);
 		myQueue.enqueue(55);
@@ -28,7 +29,7 @@ public class MyQueueTest {
 		assertEquals(35, myQueue.getFront());
 	}
 	@Test 
-	public void getSize_null_Integer(){
+	public void getSize_null_sixeOfMyQueue(){
 		myQueue.enqueue(55);
 		myQueue.enqueue(65);
 		assertEquals(2, myQueue.size);
