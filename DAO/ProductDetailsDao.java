@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
 import Model.ProductDetails;
 //Dao class to perform read and write operations on product Details file.
 public class ProductDetailsDao {
@@ -30,7 +29,6 @@ public class ProductDetailsDao {
 	public HashMap<Integer, ProductDetails> getProductList() {
 		return productDetailsList;
 	}
-	
 	public void setFilePath(String path){
 		filePath = path;
 	}
@@ -52,11 +50,10 @@ public class ProductDetailsDao {
 				String[] splitedProductDetails=productDetails.split(",");
 				productID=Integer.parseInt(splitedProductDetails[0]);
 				productName=splitedProductDetails[1];
-                //productPrice = Integer.parseInt(splitedProductDetails[2]);      
-                productPrice = Double.parseDouble(splitedProductDetails[2]);
-                ProductDetails productDetailsObject=new ProductDetails(productID,productName,productPrice);
-				productDetailsList.put(productID,productDetailsObject);			//saving data in list
-				System.out.println("^^^^^");
+                		//productPrice = Integer.parseInt(splitedProductDetails[2]);      
+                		productPrice = Double.parseDouble(splitedProductDetails[2]);
+                		ProductDetails productDetailsObject=new ProductDetails(productID,productName,productPrice);
+				productDetailsList.put(productID,productDetailsObject);						//saving data in list
 			}
 			return productDetailsList;
 		}
